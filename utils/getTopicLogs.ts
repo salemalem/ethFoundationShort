@@ -17,23 +17,28 @@ export async function getTopicLogs(transaction_type: string): Promise<JSON> {
     logger.error(error);
     throw new Error(error);
   }
-  const target_topic = CONFIG.topics[transaction_type];
-  const jsonBody = `{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method":"eth_getLogs",
-    "params": [{
-      "fromBlock": "0x0",
-      "address": "${multisigAddress}",
-      "topics": [
-        "${target_topic}"
-      ]
-    }]
-  }`;
-  const resp = await fetch(infuraURL, {
-    method: 'POST',
-    headers,
-    body: jsonBody,
-  });
-  return await resp.json();
+  try {
+    const target_topic = CONFIG.topics[transaction_type];
+    const jsonBody = `{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method":"eth_getLogs",
+      "params": [{
+        "fromBlock": "0x0",
+        "address": "${multisigAddress}",
+        "topics": [
+          "${target_topic}"
+        ]
+      }]
+    }`;
+    const resp = await fetch(infuraURL, {
+      method: 'POST',
+      headers,
+      body: jsonBody,
+    });
+    return await resp.json();
+  } catch (error) {
+    logger.error(error);
+    throw new Error(error);
+  }
 }

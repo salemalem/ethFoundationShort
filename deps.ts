@@ -25,3 +25,5 @@ export const multisigContract = new Contract(multisigAddress, MultisigABI, provi
 
 
 export const infuraURL = `https://mainnet.infura.io/v3/${Deno.env.get("INFURA_API_KEY")}`;
+export { Client } from "https://deno.land/x/postgres@v0.17.0/mod.ts";
+export {cron, daily, monthly, weekly} from "https://deno.land/x/deno_cron@v1.0.0/cron.ts";

@@ -8,6 +8,6 @@
     "dotenv":    "https://deno.land/std@0.199.0/dotenv/mod.ts"
   },
   "tasks": {
-    "run_bot": "denon run --allow-env --allow-net --allow-read ./src/index.ts"
+    "get_topic_logs": "denon run --allow-env --allow-net --allow-read /utils/getTopicLogs.ts"
   }
 }

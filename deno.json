@@ -8,6 +8,7 @@
     "dotenv":    "https://deno.land/std@0.199.0/dotenv/mod.ts"
   },
   "tasks": {
-    "watch_wallet": "denon run --allow-env --allow-net --allow-read /watchWallet.ts"
+    "watch_wallet": "denon run --allow-env --allow-net --allow-read /watchWallet.ts",
+    "get_transaction_value": "deno run --allow-env --allow-net --allow-read ./utils/getTransactionValue.ts"
   }
 }

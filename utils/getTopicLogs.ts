@@ -24,7 +24,7 @@ export async function getTopicLogs(transaction_type: string): Promise<JSON> {
       "id": 1,
       "method":"eth_getLogs",
       "params": [{
-        "fromBlock": "0x0",
+        "fromBlock": "0x1066c43",
         "address": "${multisigAddress}",
         "topics": [
           "${target_topic}"

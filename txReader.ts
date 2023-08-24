@@ -1,11 +1,15 @@
-import { ethers, InfuraProvider, Contract } from "npm:ethers@6.7.0";
+import { 
+  ethers, 
+  InfuraProvider, 
+  Contract 
+} from "./deps.ts";
 import MultisigABI from "./Multisig.abi.json" assert { type: "json" };
-import Logger from "https://deno.land/x/logger@v1.1.1/logger.ts";
-const logger = new Logger();
+import CONFIG from "./config.json" assert { type: "json" };
+import { logger } from "./deps.ts";
 
 logger.info("Starting txReader");
 // read transaction using ethers js
-const provider = new InfuraProvider("homestead", "d4a52007f10e41d2afa76c5ad167f6bf");
+const provider = new InfuraProvider("homestead", Deno.env.get("INFURA_API_KEY"));
 const headers = {
   'content-type': 'application/json',
 };
@@ -35,7 +39,9 @@ const jsonBody = `{
   "params": [{
     "fromBlock": "0x0",
     "address": "${multisigAddress}",
-    "topics": ["0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda"]
+    "topics": [
+      "0xe7c957c06e9a662c1a6c77366179f5b702b97651dc28eee7d5bf1dff6e40bb4a"
+    ]
   }]
 }`;
 

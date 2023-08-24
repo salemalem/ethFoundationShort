@@ -1,0 +1,13 @@
+{
+  "imports": {
+    "/": "./",
+    "./": "./",
+
+    "ethersjs":   "npm:ethers@6.7.0",
+    "logger":    "https://deno.land/x/logger@v1.1.2/mod.ts",
+    "dotenv":    "https://deno.land/std@0.199.0/dotenv/mod.ts"
+  },
+  "tasks": {
+    "run_bot": "denon run --allow-env --allow-net --allow-read ./src/index.ts"
+  }
+}

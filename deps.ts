@@ -1,11 +1,15 @@
 import { 
   ethers, 
   InfuraProvider, 
-  Contract 
+  Contract,
 } from "ethersjs";
 export {
   ethers,
-}
+};
+
+export { BigNumber } from "npm:@ethersproject/bignumber@5.7.0";
+
+
 import Logger from "https://deno.land/x/logger@v1.1.1/logger.ts";
 export const logger = new Logger();
 

@@ -1,0 +1,11 @@
+{
+  "apps": [
+      {
+          "name": "watch_eth_dev",
+          "script": "denon",
+          "args" : "task watch_wallet",
+          "watch": ["./"],
+          "watch_delay": 1000
+      }
+  ]
+}

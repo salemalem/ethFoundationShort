@@ -2,5 +2,8 @@
   "topics": {
     "confirmation": "0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda",
     "multitransact": "0xe7c957c06e9a662c1a6c77366179f5b702b97651dc28eee7d5bf1dff6e40bb4a"
+  },
+  "trigger_requirements": {
+    "minimum_value": "1000" 
   }
 }

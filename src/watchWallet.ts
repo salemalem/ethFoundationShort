@@ -34,8 +34,8 @@ async function watchWallet() {
       if (txValue.gt(requiredValue)) {
         logger.info(`Transaction value: ${txValue} is greater than required value: ${requiredValue}`);
         logger.info(`New transaction: ${txHash} with value ${txValue}`);
-        // const insertQuery = `INSERT INTO "wallet_txs" ("hash", "type") VALUES ('${txHash}', '${txType}')`;
-        // postgresQuery = await postgresClient.queryArray(insertQuery);
+        const insertQuery = `INSERT INTO "wallet_txs" ("hash", "type") VALUES ('${txHash}', '${txType}')`;
+        postgresQuery = await postgresClient.queryArray(insertQuery);
         logger.info(tx);
         txValue = txValue.div(ethDecimals);
         const transaction = {

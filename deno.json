@@ -7,10 +7,11 @@
     "logger":    "https://deno.land/x/logger@v1.1.2/mod.ts",
     "dotenv":    "https://deno.land/std@0.199.0/dotenv/mod.ts",
     "discordjs": "npm:discord.js@14.12.1",
-    "axiod":     "https://deno.land/x/axiod@0.26.2/mod.ts"
+    "axiod":     "https://deno.land/x/axiod@0.26.2/mod.ts",
+    "deno_cron": "https://deno.land/x/deno_cron/cron.ts"
+
   },
   "tasks": {
-    "watch_wallet": "deno run --allow-env --allow-net --allow-read /src/watchWallet.ts",
-    "run_bot": "deno run --allow-env --allow-net --allow-read /src/index.ts"
+    "watch_wallet": "denon run --allow-env --allow-net --allow-read /src/watchWallet.ts",
   }
 }

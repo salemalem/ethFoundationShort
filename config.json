@@ -4,6 +4,6 @@
     "multitransact": "0xe7c957c06e9a662c1a6c77366179f5b702b97651dc28eee7d5bf1dff6e40bb4a"
   },
   "trigger_requirements": {
-    "minimum_value": "1000" 
+    "minimum_value": "1001" 
   }
 }

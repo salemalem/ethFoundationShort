@@ -5,6 +5,7 @@ import {
   ethers,
   BigNumber
 } from '/deps.ts';
+import { cron } from "deno_cron";
 import postgresClient from "/db/postgreClient.ts";
 import CONFIG from "/config.json" assert { type: "json" };
 import bot from "/src/bot.ts";
@@ -53,5 +54,7 @@ async function watchWallet() {
 
 await bot.start();
 logger.info('Starting to watch Ethereum Dev wallet...');
-// loop this function every 5 seconds
-await watchWallet();
+// loop this function every minute
+cron('* * * * *', async () => {
+  await watchWallet();
+});

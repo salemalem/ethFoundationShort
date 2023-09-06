@@ -2,7 +2,7 @@
   "apps": [
       {
           "name": "watch_eth_dev",
-          "script": "denon",
+          "script": "deno",
           "args" : "task watch_wallet",
           "watch": ["./"],
           "watch_delay": 1000

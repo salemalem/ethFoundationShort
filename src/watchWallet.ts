@@ -7,7 +7,7 @@ import {
 } from '/deps.ts';
 import postgresClient from "/db/postgreClient.ts";
 import CONFIG from "/config.json" assert { type: "json" };
-
+import bot from "/src/bot.ts";
 
 async function watchWallet() {
   try {
@@ -35,6 +35,15 @@ async function watchWallet() {
         logger.info(`New transaction: ${txHash} with value ${txValue}`);
         // const insertQuery = `INSERT INTO "wallet_txs" ("hash", "type") VALUES ('${txHash}', '${txType}')`;
         // postgresQuery = await postgresClient.queryArray(insertQuery);
+        logger.info(tx);
+        txValue = txValue.div(ethDecimals);
+        const transaction = {
+          hash: txHash,
+          from: "Ethereum Foundation",
+          to: "To Be implemented",
+          value: txValue.toString(),
+        }
+        bot.sendAlert(transaction);
       }
     }  
   } catch (error) {
@@ -42,5 +51,7 @@ async function watchWallet() {
   }
 }
 
+await bot.start();
 logger.info('Starting to watch Ethereum Dev wallet...');
-watchWallet();
+// loop this function every 5 seconds
+await watchWallet();

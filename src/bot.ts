@@ -7,6 +7,12 @@ import { logger } from "/deps.ts"
 import { BotEvents } from './botEvents.ts';
 import { CommandHandler } from './CommandHandler.ts';
 
+interface Transaction {
+  hash: string;
+  from: string;
+  to: string;
+  value: string;
+}
 
 /**
  * Bot class that extends Client from discord.js
@@ -40,7 +46,7 @@ export class Bot extends Client {
    * Check for the latest transaction from the Ethereum Foundation.
    * If a transaction meets the conditions and is different from the last one, an embed message is sent in all text channels.
    */
-  async sendAlert() {
+  async sendAlert(latestTx) {
     try {
       
       const embedMessage = new EmbedBuilder()
@@ -56,26 +62,24 @@ export class Bot extends Client {
           { name: '🎯 Destination Wallet', value: `Destination wallet: \`${latestTx.to}\``, inline: true },
           { 
             name: '💎 Transaction Value', 
-            value: `The payload: **${parseFloat(this.latestTxValue).toLocaleString('en-US', {useGrouping: true}).replace(/,/g, ' ')} Ether** (That's approximately **$${(parseFloat(usdValue)/1000000).toFixed(2)} million**!)`, 
+            value: `The payload: **${parseFloat(latestTx.value).toLocaleString('en-US', {useGrouping: true}).replace(/,/g, ' ')} Ether**`, 
             inline: true 
           },
           { name: '\u200B', value: '\u200B' },
         )
 
 
-      this.guilds.cache.forEach((guild) => {
-        guild.channels.cache.forEach((channel) => {
-            if (channel instanceof TextChannel) {
-              channel.send({ embeds: [embedMessage] });
-            }
-          });
-        });
+      const CHANNEL_ID = Deno.env.get('CHANNEL_ID');
+      const channel = await this.channels.fetch(CHANNEL_ID!);
+      if (channel instanceof TextChannel) {
+        await channel.send({ embeds: [embedMessage] });
+      }
       
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error(`Error occurred in checkLatestTransaction: ${error.message}`);
+        console.error(`Error occurred in sendAlert: ${error.message}`);
       } else {
-        console.error('An unexpected error occurred in checkLatestTransaction.');
+        console.error('An unexpected error occurred in sendAlert.');
       }
     }
   }
@@ -94,3 +98,8 @@ export class Bot extends Client {
     }
   }
 }
+
+const commandHandler = new CommandHandler();
+const bot = new Bot(commandHandler);
+
+export default bot;

@@ -1,5 +1,5 @@
-import { getTopicLogs } from '/utils/getTopicLogs.ts';
-import { getTransactionValue } from './utils/getTransactionValue.ts';
+import { getTopicLogs } from '/src/utils/getTopicLogs.ts';
+import { getTransactionValue } from '/src/utils/getTransactionValue.ts';
 import { 
   logger,
   ethers,
